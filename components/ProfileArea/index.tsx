@@ -4,7 +4,7 @@ type Props = {}
 
 function ProfileArea({}: Props) {
   return (
-    <div>ProfileArea</div>
+    <div className='aside border-l-4'>ProfileArea</div>
   )
 }
 

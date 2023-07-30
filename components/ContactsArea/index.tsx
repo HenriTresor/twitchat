@@ -4,7 +4,7 @@ type Props = {}
 
 function ContactsArea({}: Props) {
   return (
-    <div>ContactsArea</div>
+    <div className='aside border-r-4'>ContactsArea</div>
   )
 }
 

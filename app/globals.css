@@ -9,3 +9,7 @@
     --main-color: #00abf0;
 }
 
+
+.aside{
+    @apply pl-2 pr-2  h-full w-[20%]
+}
