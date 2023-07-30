@@ -5,13 +5,13 @@ import Contact from './Contact'
 
 type Props = {}
 
-function ContactsArea({}: Props) {
+function ContactsArea({ }: Props) {
   return (
-    <div className='aside w-[30%] border-r-4 flex flex-row'>
+    <div className='aside border-r-4  flex-row flex w-auto md:w-[30%] xlg:hidden'>
       <SideBar />
-      <div className='w-full overflow-auto bar'>
+      <div className='w-full overflow-auto bar hidden md:block'>
         <ChatHeader />
-        <div className=''> 
+        <div className=''>
           <Contact />
           <Contact />
           <Contact />
