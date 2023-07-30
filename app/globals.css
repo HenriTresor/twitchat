@@ -11,7 +11,7 @@
 
 
 .aside{
-    @apply pl-2 pr-2  h-full w-[20%]
+    @apply   h-full 
 }
 
 .btn{
