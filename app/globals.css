@@ -13,3 +13,7 @@
 .aside{
     @apply pl-2 pr-2  h-full w-[20%]
 }
+
+.btn{
+    @apply p-2 rounded-sm
+}
