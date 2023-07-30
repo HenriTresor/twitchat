@@ -4,7 +4,7 @@ import ProfileArea from "@/components/ProfileArea";
 
 export default function Home() {
   return (
-    <div>
+    <div className="w-full h-full flex justify-between">
       <ContactsArea />
       <ChattingArea />
       <ProfileArea />
