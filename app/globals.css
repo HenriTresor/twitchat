@@ -17,3 +17,10 @@
 .btn{
     @apply p-2 rounded-sm
 }
+
+.action-btn{
+    @apply p-2 pt-5 border-b-2 w-[100%] cursor-pointer
+}
+.action-btn:hover{
+    @apply bg-gray-100
+}
