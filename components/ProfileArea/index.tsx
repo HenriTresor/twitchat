@@ -1,5 +1,6 @@
 import React from 'react'
 import {MdPerson, MdBlock} from 'react-icons/md'
+import { FaVolumeMute} from 'react-icons/fa'
 
 type Props = {}
 
@@ -10,7 +11,14 @@ function ProfileArea({ }: Props) {
 
             </div>
             <h1 className='font-extrabold tracking-wider text-center text-[1.3rem]'>Full name</h1>
-
+            <div className='flex items-center gap-2'>
+                <button className='btn border rounded-full'>
+                    <MdPerson />
+                </button>
+                <button className='btn border rounded-full'>
+                    <FaVolumeMute />
+                </button>
+            </div>
             <ul className='list-none w-full'>
                 <li className='action-btn'><MdPerson /> Sociala profile</li>
                 <li className='action-btn border-red-500 text-red-500'><MdBlock /> Block</li>

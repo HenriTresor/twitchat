@@ -1,6 +1,6 @@
 {
   "name": "twitchat",
-  "description":"chatting application",
+  "description": "chatting application",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -22,6 +22,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "tailwindcss": "^3.3.2",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "socket.io-client": "^4.6.1"
   }
 }
