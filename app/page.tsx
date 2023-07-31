@@ -8,10 +8,10 @@ import { io } from 'socket.io-client';
 
 export default function Home() {
 
-  const socket = useRef(null)
+  const socket = useRef<any>(null)
   useEffect(() => {
     socket.current = io('http://localhost:8080')
-  },[])
+  }, [])
   return (
     <div className="w-full h-screen flex justify-between">
       <ContactsArea />
