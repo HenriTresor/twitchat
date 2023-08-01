@@ -4,21 +4,23 @@ import { useEffect, useRef, useContext, useState } from 'react'
 import ChattingArea from "@/components/ChattingArea";
 import ContactsArea from "@/components/ContactsArea";
 import ProfileArea from "@/components/ProfileArea";
-import useCookie from '@/hooks/useCookie';
 import { AppData, user } from '@/context/AppContext';
 import { FaFacebookMessenger } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
 
 export default function Home() {
 
-  const { cookie, loading } = useCookie()
   const { setCurrentUser, currentChat, currentUser } = useContext(AppData)
   const socket = useRef<any>(null)
-
-  // useEffect(() => {
-  //   !cookie && location.assign('/')
-  // },[])
+  const router = useRouter()
+  useEffect(() => {
+    !localStorage.getItem('access_token') && router.push('/login')
+  }, [])
   useEffect(() => {
     const getUser = async () => {
+
+      const cookie = localStorage.getItem('access_token')
       try {
 
         const res = await fetch('http://localhost:8080/api/users/me/profile', {
@@ -37,14 +39,13 @@ export default function Home() {
           })
           return
         }
-        alert(data.message)
       } catch (error: any) {
         alert(error.message)
       }
     }
-    cookie && getUser()
+    getUser()
 
-  }, [cookie])
+  }, [])
 
   useEffect(() => {
     async function getMessages() {
@@ -56,31 +57,26 @@ export default function Home() {
           setCurrentUser((prev: user) => ({ ...prev, messages: data.messages }))
           return
         }
-        alert(data.message)
       } catch (error: any) {
-        alert(JSON.stringify(error.message))
+        console.log('error', error.message)
       }
     }
 
     currentUser?._id && getMessages()
   }, [currentUser])
-  if (loading) {
-    return (
-      <div className='flex items-center min-h-screen w-full justify-center'>
-        <h1 className='text-[3rem] text-blue-300'>
-          <FaFacebookMessenger />
-        </h1>
-      </div>
-    )
-  }
-  if (cookie) {
-    return (
 
+  if (localStorage.getItem('access_token')) {
+
+    return (
       <div className="w-full h-screen flex justify-between">
         <ContactsArea />
         <ChattingArea />
         {currentChat && <ProfileArea />}
       </div>
     )
+  } else {
+    return <Loading />
   }
+
+
 }

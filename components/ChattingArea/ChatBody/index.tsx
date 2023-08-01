@@ -8,6 +8,7 @@ type Props = {}
 function ChatBody({ }: Props) {
 
     const { currentChat, currentUser } = React.useContext(AppData)
+    console.log(currentUser)
     return (
         <div className='flex-grow relative'>
             {
@@ -35,7 +36,7 @@ function ChatBody({ }: Props) {
                     </div>
                 ) : (
                     <div className='w-full h-full flex items-center justify-center'>
-                        <p>select a chat to start!</p>
+                            <p>{ `Hey ${currentUser?.names}`},select a chat to start!</p>
                     </div>
                 )
             }

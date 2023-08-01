@@ -1,9 +1,10 @@
 'use client'
 import Image from 'next/image'
 import React, { useEffect, useReducer } from 'react'
-import { useRouter } from 'next/router'
-import useCookie from '@/hooks/useCookie'
+import { useRouter } from 'next/navigation'
 import { FaFacebookMessenger } from 'react-icons/fa'
+import { AppData } from '@/context/AppContext'
+import { document } from 'postcss'
 
 type Props = {}
 
@@ -14,17 +15,16 @@ interface inputValues {
 
 function Login({ }: Props) {
 
+    useEffect(() => {
+        localStorage.getItem('access_token') && router.push('/t')
+    },[])
     const [inputValues, setInputValues] = React.useState<inputValues>({
         email: '',
         password: ''
     })
 
-    const { cookie, loading } = useCookie()
-    // const router = useRouter()
-
-    useEffect(() => {
-        cookie && location.assign('/t')
-    }, [cookie])
+    const { setCurrentUser } = React.useContext(AppData)
+    const router = useRouter()
     function handleChange(e: any): void {
         setInputValues((prev: inputValues) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -40,11 +40,10 @@ function Login({ }: Props) {
             })
             const data = await res.json()
             if (data.status) {
-
-                document.cookie = `access_token=${data.access_token}`
-                document.cookie = `loggedin=${true}`
-                // router.push('/t')
-                location.assign('/t')
+                setCurrentUser(data.user)
+                localStorage.setItem('access_token', data?.access_token)
+                router.push('/t')
+                // location.assign('/t')
                 return
             }
             alert(data.message)
@@ -52,17 +51,6 @@ function Login({ }: Props) {
             alert(error.message)
         }
     }
-
-    if (loading) {
-        return (
-            <div className='flex items-center min-h-screen w-full justify-center'>
-                <h1 className='text-[3rem] text-blue-300'>
-                    <FaFacebookMessenger />
-                </h1>
-            </div>
-        )
-    } else {
-
 
         return (
             <div className='w-full min-h-screen flex items-center justify-center'>
@@ -100,7 +88,6 @@ function Login({ }: Props) {
                 </div>
             </div>
         )
-    }
 }
 
 export default Login
