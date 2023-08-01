@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Contact from './Contact'
 import { MdMoreHoriz } from 'react-icons/md'
 import { FaFacebookMessenger } from 'react-icons/fa'
@@ -11,6 +11,12 @@ type Props = {}
 function ContactsArea({ }: Props) {
 
   const { currentUser, setCurrentChat } = React.useContext(AppData)
+
+  useEffect(() => {
+    console.log(currentUser)
+   }, [
+    currentUser
+  ])
   return (
     <div className='aside border-r-4  flex-row flex w-auto md:w-[30%] xlg:hidden'>
       <div className='w-full overflow-auto bar hidden md:block'>

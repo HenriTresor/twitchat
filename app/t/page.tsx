@@ -52,6 +52,7 @@ export default function Home() {
       try {
         const res = await fetch(`http://localhost:8080/api/links/${currentUser?._id}`)
         const data = await res.json()
+        alert(JSON.stringify(data))
         if (data.status) {
           setCurrentUser((prev: user) => ({ ...prev, links: data?.links }))
           return
@@ -61,7 +62,7 @@ export default function Home() {
       }
     }
 
-    currentUser?._id && getLinks()
+     getLinks()
   }, [])
 
   if (localStorage.getItem('access_token')) {
