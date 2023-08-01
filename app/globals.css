@@ -15,7 +15,7 @@
 }
 
 .btn{
-    
+    @apply p-2
 }
 
 .action-btn{

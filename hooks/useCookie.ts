@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function useCookie() {
   const [cookie, setCookie] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);

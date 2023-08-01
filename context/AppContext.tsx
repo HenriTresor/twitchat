@@ -1,11 +1,11 @@
 import React, { createContext, useState } from "react";
-import { JsxElement } from "typescript";
 
 export const AppData = createContext<any>(null)
 
-interface user {
+export interface user {
+    _id: string
     names: string
-    friends: user[]
+    messages: []
 }
 function AppContext({ children }: any) {
 

@@ -8,7 +8,7 @@ type Props = {}
 
 function ProfileArea({ }: Props) {
 
-    const { currentUser } = useContext(AppData)
+    const { currentUser, currentChat } = useContext(AppData)
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         currentUser?._id && setLoading(false)
@@ -19,7 +19,7 @@ function ProfileArea({ }: Props) {
                 {
                     !loading && (
                         <Image
-                            src={currentUser?.profile}
+                            src={currentChat?.profile}
                             alt=''
                             width={'100'}
                             height={'100'}
@@ -29,7 +29,7 @@ function ProfileArea({ }: Props) {
                 }
             </div>
             {
-                loading ? <div className='w-[200px] h-auto p-2 bg-gray-100'></div> : <h1>{currentUser?.names}</h1>
+                loading ? <div className='w-[200px] h-auto p-2 bg-gray-100'></div> : <h1>{currentChat?.names}</h1>
            }
             <div className='flex items-center gap-2'>
                 <button className='btn border rounded-full'>
