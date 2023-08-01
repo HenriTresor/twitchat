@@ -1,39 +1,10 @@
 'use client'
 import Image from 'next/image'
-import React, {useEffect} from 'react'
+import React, { useReducer } from 'react'
 
 type Props = {}
 
-export interface error {
-    state?: boolean,
-    message?: string
-}
-
-export interface state {
-    loading?: boolean,
-    error?: error,
-    data?: string
-}
-export interface action {
-    payload?: object,
-    type?: string
-}
-
-const reducer = (state: state, action: action) => {
-    switch (action.type) {
-        case 'LOGIN_START':
-            return { ...state, loading: true }
-        case 'LOGIN_SUCCESS':
-            return { ...state, loading: false, data: action.payload }
-        case 'LOGIN_ERROR':
-            return { ...state, loading: false, error: { state: true, message: action.payload } }
-        default:
-            return { ...state, error: { state: false, message: null }, loading: false }
-    }
-}
-
-function Login({ }: Props){
-
+function Login({ }: Props) {
 
     const handleSubmit = (): void => {
 
