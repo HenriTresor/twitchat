@@ -12,13 +12,13 @@ interface inputValues {
 
 function Login({ }: Props) {
 
-    const { push } = useRouter()
     const [inputValues, setInputValues] = React.useState<inputValues>({
         email: '',
         password: ''
     })
-
-    const handleChange = (e: any): void => {
+    
+    // const router = useRouter()
+    function handleChange(e: any): void {
         setInputValues((prev: inputValues) => ({ ...prev, [e.target.name]: e.target.value }))
     }
     const handleSubmit = async (): Promise<any> => {
@@ -35,9 +35,11 @@ function Login({ }: Props) {
             if (data.status) {
 
                 document.cookie = `access_token=${data.access_token}`
-                push('/t')
+                // router.push('/t')
+                location.assign('/t')
                 return
             }
+            alert(data.message)
         } catch (error: any) {
             alert(error.message)
         }
