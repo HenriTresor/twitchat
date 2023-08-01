@@ -4,10 +4,23 @@ import React, { useReducer } from 'react'
 
 type Props = {}
 
+interface inputValues {
+    email: string
+    password: string
+}
+
 function Login({ }: Props) {
 
+    const [inputValues, setInputValues] = React.useState<inputValues>({
+        email: '',
+        password: ''
+    })
     const handleSubmit = (): void => {
+        try {
 
+        } catch (error) {
+
+        }
     }
     return (
         <div className='w-full min-h-screen flex items-center justify-center'>
@@ -36,7 +49,7 @@ function Login({ }: Props) {
                             type="password" placeholder='enter your password' id='password' name='password' />
                     </div>
                     <div className='p-2 mt-4'>
-                        <button className='btn p-2 border border-blue-300 rounded-md'>Continue...</button>
+                        <button className='btn p-2 border border-blue-300 rounded-md' onClick={handleSubmit}>Continue...</button>
                     </div>
                 </div>
             </div>
