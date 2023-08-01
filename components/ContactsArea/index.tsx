@@ -1,11 +1,17 @@
+'use client'
+
 import React from 'react'
 import Contact from './Contact'
 import { MdMoreHoriz } from 'react-icons/md'
-import { FaFacebookMessenger} from 'react-icons/fa'
+import { FaFacebookMessenger } from 'react-icons/fa'
+import { AppData } from '@/context/AppContext'
 
 type Props = {}
 
 function ContactsArea({ }: Props) {
+
+  const { currentUser } = React.useContext(AppData)
+  console.log(currentUser)
   return (
     <div className='aside border-r-4  flex-row flex w-auto md:w-[30%] xlg:hidden'>
       <div className='w-full overflow-auto bar hidden md:block'>
@@ -21,6 +27,12 @@ function ContactsArea({ }: Props) {
           </button>
         </div>
         <div className=''>
+          {
+            currentUser?.friends?.map((friend: any) => {
+              return <Contact key={friend?._id} {...friend} />
+            })
+          }
+          {/* <Contact />
           <Contact />
           <Contact />
           <Contact />
@@ -33,8 +45,7 @@ function ContactsArea({ }: Props) {
           <Contact />
           <Contact />
           <Contact />
-          <Contact />
-          <Contact />
+          <Contact /> */}
         </div>
       </div>
     </div>

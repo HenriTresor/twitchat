@@ -1,15 +1,15 @@
-import React, { useContext, createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import { JsxElement } from "typescript";
 
 export const AppData = createContext<any>(null)
 
 interface user {
-    email: string
+    names: string
     friends: user[]
 }
-function AppContext({children}: any): any {
+function AppContext({ children }: any) {
 
-    const [currentUser, setCurrentUser] = useState<null | user>(null)
+    const [currentUser, setCurrentUser] = useState<user | null>(null)
     const [isLoggedIn, setIsLogged] = useState<Boolean>(false)
 
     const value = {
