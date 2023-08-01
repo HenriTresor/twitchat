@@ -35,6 +35,7 @@ function Login({ }: Props) {
             if (data.status) {
 
                 document.cookie = `access_token=${data.access_token}`
+                document.cookie = `loggedin=${true}`
                 // router.push('/t')
                 location.assign('/t')
                 return
