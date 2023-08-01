@@ -5,7 +5,7 @@ export const AppData = createContext<any>(null)
 export interface user {
     _id: string
     names: string
-    messages: []
+    links: []
 }
 function AppContext({ children }: any) {
 

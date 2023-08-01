@@ -35,7 +35,7 @@ export default function Home() {
           setCurrentUser({
             _id: data.currentUser?._id,
             names: data?.currentUser?.names,
-            messages: []
+            links: []
           })
           return
         }
@@ -48,13 +48,12 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    async function getMessages() {
+    async function getLinks() {
       try {
-        const res = await fetch(`http://localhost:8080/api/messages/${currentUser?._id}`)
+        const res = await fetch(`http://localhost:8080/api/links/${currentUser?._id}`)
         const data = await res.json()
         if (data.status) {
-
-          setCurrentUser((prev: user) => ({ ...prev, messages: data.messages }))
+          setCurrentUser((prev: user) => ({ ...prev, links: data?.links }))
           return
         }
       } catch (error: any) {
@@ -62,11 +61,10 @@ export default function Home() {
       }
     }
 
-    currentUser?._id && getMessages()
-  }, [currentUser])
+    currentUser?._id && getLinks()
+  }, [])
 
   if (localStorage.getItem('access_token')) {
-
     return (
       <div className="w-full h-screen flex justify-between">
         <ContactsArea />

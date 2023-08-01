@@ -27,9 +27,9 @@ function ContactsArea({ }: Props) {
         </div>
         <div className=''>
           {
-            currentUser?.messages?.map((message: any) => {
-              console.log(message)
-              return <Contact key={message?._id} {...message} onClick={()=>setCurrentChat(message)} />
+            currentUser?.links?.map((link: any) => {
+              console.log(link)
+              return <Contact key={link?._id} {...link} onClick={()=>setCurrentChat(link)} />
             })
           }
         </div>

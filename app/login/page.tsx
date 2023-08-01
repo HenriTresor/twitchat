@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { FaFacebookMessenger } from 'react-icons/fa'
 import { AppData } from '@/context/AppContext'
 import { document } from 'postcss'
+import Loading from '@/components/Loading'
 
 type Props = {}
 
@@ -52,6 +53,7 @@ function Login({ }: Props) {
         }
     }
 
+    if (!localStorage.getItem('access_token')) {
         return (
             <div className='w-full min-h-screen flex items-center justify-center'>
                 <div className='p-4 shadow-lg w-[50%] h-auto flex border-2'>
@@ -88,6 +90,10 @@ function Login({ }: Props) {
                 </div>
             </div>
         )
+    } else {
+        return <Loading /> 
+    }
+      
 }
 
 export default Login
