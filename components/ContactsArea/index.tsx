@@ -10,8 +10,7 @@ type Props = {}
 
 function ContactsArea({ }: Props) {
 
-  const { currentUser } = React.useContext(AppData)
-  console.log(currentUser)
+  const { currentUser, setCurrentChat } = React.useContext(AppData)
   return (
     <div className='aside border-r-4  flex-row flex w-auto md:w-[30%] xlg:hidden'>
       <div className='w-full overflow-auto bar hidden md:block'>
@@ -29,23 +28,9 @@ function ContactsArea({ }: Props) {
         <div className=''>
           {
             currentUser?.friends?.map((friend: any) => {
-              return <Contact key={friend?._id} {...friend} />
+              return <Contact key={friend?._id} {...friend} onClick={()=>setCurrentChat(friend)} />
             })
           }
-          {/* <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact />
-          <Contact /> */}
         </div>
       </div>
     </div>

@@ -11,12 +11,15 @@ function AppContext({ children }: any) {
 
     const [currentUser, setCurrentUser] = useState<user | null>(null)
     const [isLoggedIn, setIsLogged] = useState<Boolean>(false)
+    const [currentChat, setCurrentChat] = useState(null)
 
     const value = {
         currentUser,
         setCurrentUser,
         isLoggedIn,
-        setIsLogged
+        setIsLogged,
+        currentChat,
+        setCurrentChat
     }
     return (
         <AppData.Provider value={value}>
