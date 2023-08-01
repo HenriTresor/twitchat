@@ -24,3 +24,7 @@
 .action-btn:hover{
     @apply bg-gray-100
 }
+
+.list-item{
+    @apply mr-2 font-sans cursor-pointer text-[1.2rem] hover:outline-dashed p-2
+}
