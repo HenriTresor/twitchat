@@ -19,7 +19,7 @@ function ProfileArea({ }: Props) {
                 {
                     !loading && (
                         <Image
-                            src={currentChat?.profile}
+                            src={currentChat?.sender?.profile || currentChat?.users[0]?._id !== currentUser?._id && currentChat?.users[0]?.profile}
                             alt=''
                             width={'100'}
                             height={'100'}
@@ -29,7 +29,7 @@ function ProfileArea({ }: Props) {
                 }
             </div>
             {
-                loading ? <div className='w-[200px] h-auto p-2 bg-gray-100'></div> : <h1>{currentChat?.names}</h1>
+                loading ? <div className='w-[200px] h-auto p-2 bg-gray-100'></div> : <h1 className='font-bold tracking-wider text-[1.3rem]'>{currentChat?.sender?.names || currentChat?.users[0]?._id !== currentUser?._id && currentChat?.users[0]?.names}</h1>
            }
             <div className='flex items-center gap-2'>
                 <button className='btn border rounded-full'>

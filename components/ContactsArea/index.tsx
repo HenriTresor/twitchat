@@ -5,6 +5,7 @@ import Contact from './Contact'
 import { MdMoreHoriz } from 'react-icons/md'
 import { FaFacebookMessenger } from 'react-icons/fa'
 import { AppData } from '@/context/AppContext'
+import Loading from '../Loading'
 
 type Props = {}
 

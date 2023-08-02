@@ -16,14 +16,14 @@ function ChatBody({ }: Props) {
                     <div className='flex flex-col w-full items-center gap-4 '>
                         <div className='w-[100px] h-[100px] bg-gray-100 mt-5 rounded-full overflow-hidden'>
                             <Image
-                                src={currentChat?.profile}
+                                src={currentChat?.sender?.profile || currentChat?.users[0]?._id !== currentUser?._id && currentChat?.users[0]?.profile}
                                 alt=''
                                 width={'100'}
                                 height={'100'}
                                 className='w-full h-full object-cover'
                             />
                         </div>
-                        <h1 className='font-extrabold tracking-wider text-center text-[1.3rem]'>{currentChat?.names}</h1>
+                        <h1 className='font-extrabold tracking-wider text-center text-[1.3rem]'>{currentChat?.sender?.names || currentChat?.users[0]?._id !== currentUser?._id && currentChat?.users[0]?.names}</h1>
                         <div className='flex items-center gap-2'>
                             <button className='btn border rounded-full'>
                                 <MdPerson />
@@ -32,7 +32,7 @@ function ChatBody({ }: Props) {
                                 <FaVolumeMute />
                             </button>
                         </div>
-                        <p className='font-sans tracking-wider'>This is the start of your legendary chat with {currentChat?.names}</p>
+                        <p className='font-sans tracking-wider'>This is the start of your legendary chat with {currentChat?.sender?.names || currentChat?.users[0]?._id !== currentUser?._id && currentChat?.users[0]?.names}</p>
                     </div>
                 ) : (
                     <div className='w-full h-full flex items-center justify-center'>

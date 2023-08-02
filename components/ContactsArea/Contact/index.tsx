@@ -1,14 +1,15 @@
+import { AppData } from '@/context/AppContext'
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
 
 
 type Props = {
     messages: [],
-    users: []
     onClick: any
 }
 
 function Contact({ messages, users, onClick }: Props) {
+    const {currentUser} = useContext(AppData)
     return (
         <div
             onClick={onClick}
@@ -17,7 +18,7 @@ function Contact({ messages, users, onClick }: Props) {
             <div className='flex gap-4'>
                 <div className='w-[50px] overflow-hidden rounded-full h-[50px] bg-slate-100'>
                     <Image
-                        src={messages?.sender?.profile}
+                        src={messages?.sender?.profile || users[0]?._id !== currentUser?._id && users[0]?.profile}
                         alt=''
                         width={'100'}
                         height={'100'}
@@ -25,7 +26,7 @@ function Contact({ messages, users, onClick }: Props) {
                     />
                 </div>
                 <div>
-                    <h1 className='font-bold tracking-wider'>{messages?.sender?.names}</h1>
+                    <h1 className='font-bold tracking-wider'>{messages?.sender?.names || users[0]?.names !== currentUser?.names && users[0]?.names}</h1>
                     <p>recent message</p>
                 </div>
             </div>

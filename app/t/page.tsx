@@ -65,8 +65,8 @@ export default function Home() {
       }
     }
 
-     getLinks()
-  }, [])
+     currentUser?._id && getLinks()
+  }, [currentUser?._id])
 
   if (loading) {
     return <Loading />
