@@ -12,6 +12,7 @@ import Loading from '@/components/Loading';
 export default function Home() {
 
   const { setCurrentUser, currentChat, currentUser } = useContext(AppData)
+  const [loading, setLoading] = useState(true)
   const socket = useRef<any>(null)
   const router = useRouter()
   useEffect(() => {
@@ -37,10 +38,12 @@ export default function Home() {
             names: data?.currentUser?.names,
             links: []
           })
+          setLoading(false)
           return
         }
+        console.log(data.message)
       } catch (error: any) {
-        alert(error.message)
+        return error.message
       }
     }
     getUser()
@@ -52,11 +55,11 @@ export default function Home() {
       try {
         const res = await fetch(`http://localhost:8080/api/links/${currentUser?._id}`)
         const data = await res.json()
-        alert(JSON.stringify(data))
         if (data.status) {
           setCurrentUser((prev: user) => ({ ...prev, links: data?.links }))
           return
         }
+        console.log(data.message)
       } catch (error: any) {
         console.log('error', error.message)
       }
@@ -65,6 +68,9 @@ export default function Home() {
      getLinks()
   }, [])
 
+  if (loading) {
+    return <Loading />
+  }
   if (localStorage.getItem('access_token')) {
     return (
       <div className="w-full h-screen flex justify-between">
