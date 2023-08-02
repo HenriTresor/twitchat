@@ -18,7 +18,7 @@ function Contact({ messages, users, onClick }: Props) {
             <div className='flex gap-4'>
                 <div className='w-[50px] overflow-hidden rounded-full h-[50px] bg-slate-100'>
                     <Image
-                        src={messages?.sender?.profile || users[0]?._id !== currentUser?._id && users[0]?.profile}
+                        src={messages?.sender?.profile || users[0]?._id !== currentUser?._id ? users[0]?.profile : users[1]?.profile}
                         alt=''
                         width={'100'}
                         height={'100'}
@@ -26,7 +26,7 @@ function Contact({ messages, users, onClick }: Props) {
                     />
                 </div>
                 <div>
-                    <h1 className='font-bold tracking-wider'>{messages?.sender?.names || users[0]?.names !== currentUser?.names && users[0]?.names}</h1>
+                    <h1 className='font-bold tracking-wider'>{messages?.sender?.names || users[0]?.names !== currentUser?.names ? users[0]?.names : users[1]?.names}</h1>
                     <p>recent message</p>
                 </div>
             </div>
