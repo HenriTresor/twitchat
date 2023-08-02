@@ -1,12 +1,38 @@
 'use client'
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaFacebookMessenger, FaGooglePlay, FaAppStore } from 'react-icons/fa'
+import {useRouter} from 'next/navigation'
 
 type Props = {}
 
+
 function LandingPage({ }: Props) {
+    const [loading, setLoading] = useState(false)
+    const [names, setNames] = useState('')
+
+    useEffect(() => {
+        const getNames = async () => {
+            try {
+                const res = await fetch(`http://localhost:8080/api/users/me/profile`, {
+                    method: 'GET',
+                    headers: {
+                        'authorization':`Bearer ${localStorage.getItem('access_token')}`
+                    }
+                })
+
+                const data = await res.json()
+                if (data.status) {
+                    return setNames(data.currentUser.names)      }
+              console.log(data.message)
+            } catch (error: any) {
+               return error.message
+            }
+        }
+getNames()
+    },[])
+    const router = useRouter()
     return (
         <div>
             <div className='flex p-2 items-center justify-around shadow-sm' >
@@ -33,8 +59,12 @@ function LandingPage({ }: Props) {
                     </div>
                     <p className='font-sans mt-5  tracking-wider md:text-[1.5rem] text-[0.9rem]'>Chat easily with your friends on sociala here ...</p>
                     <p className='font-sans mt-5  tracking-wider md:text-[1.5rem] text-[0.9rem]'>Have all your chats in one place!</p>
-                    <button onClick={() => location.assign('/login')} className='btn  mt-10 p-4 pr-8 rounded-xl border-2 border-blue-500 text-verdana text-[1.2rem] tracking-widest'>
-                        Continue with Sociala
+                    <button className='btn  mt-10 p-4 pr-8 rounded-xl border-2 border-blue-500 text-verdana text-[1.2rem] tracking-widest' onClick={() => {
+                        names ? router.push('/t') : router.push('/login')
+                    }}>
+                        {
+                            names ? `Continue as ${names}` : 'Continue with Sociala'
+                        }
                     </button>
                 </div>
                 <div className='w-[50%] md:block hidden'>
